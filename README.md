@@ -35,6 +35,30 @@ This first prototype will consist of an API with a rudimentary CRUD of lineages 
 </details>
 
 
+<details>
+    <summary><code>PUT</code> <code>/lineages/update</code></summary>
+    Body
+
+```json
+{
+    "id": 1,
+    "name": "Minions",
+    "maxAge": 5000,
+    "adultAge": 0,
+    "isPlayable": false,
+    "description": "The Minions are small, yellow, oval shaped creatures. They tend to have little self-control."
+}
+```
+
+</details>
+
+<code>GET</code> <code>/lineages</code>
+
+<code>GET</code> <code>/lineages/:id</code>
+
+<code>DELETE</code> <code>/lineages/:id</code></summary>
+
+
 ## Features
 
 - [x] Create a lineage
