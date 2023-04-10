@@ -38,6 +38,6 @@ This first prototype will consist of an API with a rudimentary CRUD of lineages 
 ## Features
 
 - [x] Create a lineage
-- [ ] Find all lineages and lineage by ID
-- [ ] Edit a lineage
-- [ ] Delete a lineage
+- [x] Find all lineages and lineage by ID
+- [x] Edit a lineage
+- [x] Delete a lineage
