@@ -45,7 +45,7 @@ async function update (req: Request, res: Response, next: NextFunction) {
     }
 }
 
-export default{
+export default {
     create,
     findAll,
     findById,
