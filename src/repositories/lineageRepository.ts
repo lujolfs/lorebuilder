@@ -16,7 +16,16 @@ async function lineageByName(name: string) {
     );
 }
 
+async function findAll() {
+    return await configDatabase.query(
+        `
+            SELECT * FROM lineages;
+        `
+    );
+}
+
 export default {
     newLineage,
-    lineageByName
+    lineageByName,
+    findAll
 }

@@ -3,7 +3,7 @@
 
 ## Introduction
 
-As an avid TTRPG player, I'm always looking for ways to optimize my time and my experience with several games. I find that the available tools online for organizing the bureaucratic aspects of a TTRPG group and session are either too complicated or too expensive. Because of that, I've decided to create a simpler tool to manage and create character sheets, worldbuilding notes, items and other aspects of lore.
+As an avid TTRPG player, I'm always looking for ways to optimize my time and my experience with several games. I find that the available online tools for organizing the bureaucratic aspects of a TTRPG group and session are either too complicated or too expensive. Because of that, I've decided to create a simpler tool to manage and create character sheets, worldbuilding notes, items and other aspects of lore.
 
 This first prototype will consist of an API with a rudimentary CRUD of lineages (formerly known as races in D&D), using `PostgreSQL` and `node-postgres`.
 

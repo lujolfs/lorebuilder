@@ -11,4 +11,9 @@ lineageRoutes.post(
     lineagesControllers.create
 );
 
+lineageRoutes.get(
+    "/",
+    lineagesControllers.findAll
+);
+
 export default lineageRoutes;

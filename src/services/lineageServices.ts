@@ -12,6 +12,13 @@ async function create (newLineage: Lineage) {
     await lineageRepository.newLineage(newLineage);
 }
 
+async function findAll() {
+    const { rows, rowCount } = await lineageRepository.findAll();
+    if (!rowCount) throw errors.notFoundError();
+    return rows;
+}
+
 export default {
-    create
+    create,
+    findAll
 }

@@ -5,6 +5,14 @@ function conflictError(message) {
     };
 }
 
+function notFoundError() {
+    return {
+        name: "NotFoundError",
+        message: "No lineages were found."
+    }
+}
+
 export default {
-    conflictError
+    conflictError,
+    notFoundError
 }

@@ -13,6 +13,17 @@ async function create(req: Request, res: Response, next: NextFunction) {
     }
 }
 
+async function findAll (req: Request, res: Response, next: NextFunction) {
+    try {
+        const lineages = await lineageServices.findAll();
+
+        return res.send(lineages);
+    } catch (err) {
+        next(err);
+    }
+}
+
 export default{
-    create
+    create,
+    findAll
 }
