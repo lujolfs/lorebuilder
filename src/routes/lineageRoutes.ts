@@ -1,7 +1,7 @@
 import { Router } from "express";
 import lineagesControllers from "../controllers/lineages.controllers.js";
 import { validateSchema } from "../middlewares/schemaValidationMiddleware.js";
-import { lineageSchema } from "../schemas/Lineage.js";
+import { lineageSchema, lineageSchemaUpdate } from "../schemas/Lineage.js";
 
 const lineageRoutes = Router();
 
@@ -19,6 +19,12 @@ lineageRoutes.get(
 lineageRoutes.get(
     "/:id",
     lineagesControllers.findById
+)
+
+lineageRoutes.put(
+    "/update",
+    validateSchema(lineageSchemaUpdate),
+    lineagesControllers.update
 )
 
 export default lineageRoutes;

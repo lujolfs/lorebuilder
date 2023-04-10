@@ -1,5 +1,5 @@
 export type Lineage = {
-    id?: number,
+    id?: string,
     name: string,
     maxAge: number,
     adultAge: number,

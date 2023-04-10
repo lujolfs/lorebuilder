@@ -33,8 +33,21 @@ async function findById (req: Request, res: Response, next: NextFunction) {
     }
 }
 
+async function update (req: Request, res: Response, next: NextFunction) {
+    const updatedLineage = req.body as Lineage;
+    let id = updatedLineage.id
+    try {
+        await lineageServices.update(updatedLineage);
+        const lineage = await lineageServices.findById(id);
+        return res.send(lineage[0]).status(200);
+    } catch (err) {
+        next (err)
+    }
+}
+
 export default{
     create,
     findAll,
-    findById
+    findById,
+    update
 }

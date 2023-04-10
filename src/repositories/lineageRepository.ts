@@ -34,9 +34,20 @@ async function findById(id: string) {
     );
 }
 
+async function lineageUpdate (updatedLineage: Lineage) {
+    return await configDatabase.query(
+        `
+            UPDATE lineages SET name=$1, "maxAge"=$2, "adultAge"=$3, "isPlayable"=$4, description=$5
+            WHERE id=$6;
+        `,
+        [updatedLineage.name, updatedLineage.maxAge, updatedLineage.adultAge, updatedLineage.isPlayable, updatedLineage.description, updatedLineage.id]
+    );
+}
+
 export default {
     newLineage,
     lineageByName,
     findAll,
-    findById
+    findById,
+    lineageUpdate
 }

@@ -24,8 +24,18 @@ async function findById(id: string) {
     return rows;
 }
 
+async function update(updatedLineage: Lineage) {
+    const {
+        rows: [lineage],
+    } = await lineageRepository.findById(updatedLineage.id);
+    if (!lineage) throw errors.notFoundError();
+
+    await lineageRepository.lineageUpdate(updatedLineage);
+}
+
 export default {
     create,
     findAll,
-    findById
+    findById,
+    update
 }
