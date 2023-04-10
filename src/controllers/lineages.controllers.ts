@@ -24,7 +24,7 @@ async function findAll (req: Request, res: Response, next: NextFunction) {
 }
 
 async function findById (req: Request, res: Response, next: NextFunction) {
-    let {id} = req.params;
+    const {id} = req.params;
     try {
         const lineage = await lineageServices.findById(id);
         return res.send(lineage[0]);
@@ -45,9 +45,21 @@ async function update (req: Request, res: Response, next: NextFunction) {
     }
 }
 
+async function deleteLineage (req: Request, res: Response, next: NextFunction) {
+    const {id} = req.params;
+    try {
+        await lineageServices.deleteLineage(id);
+        const lineages = await lineageServices.findAll();
+        return res.send(lineages).status(200);
+    } catch (err) {
+        next (err)
+    }
+}
+
 export default {
     create,
     findAll,
     findById,
-    update
+    update,
+    deleteLineage
 }

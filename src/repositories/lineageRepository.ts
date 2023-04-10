@@ -44,10 +44,21 @@ async function lineageUpdate (updatedLineage: Lineage) {
     );
 }
 
+async function deleteLineage (id: string) {
+    return await configDatabase.query(
+        `
+            DELETE FROM lineages
+            WHERE id=$1;
+        `,
+        [id]
+    );
+}
+
 export default {
     newLineage,
     lineageByName,
     findAll,
     findById,
-    lineageUpdate
+    lineageUpdate,
+    deleteLineage
 }

@@ -33,9 +33,17 @@ async function update(updatedLineage: Lineage) {
     await lineageRepository.lineageUpdate(updatedLineage);
 }
 
+async function deleteLineage(id: string) {
+    const { rowCount } = await lineageRepository.findById(id);
+    if (!rowCount) throw errors.notFoundError();
+
+    await lineageRepository.deleteLineage(id);
+}
+
 export default {
     create,
     findAll,
     findById,
-    update
+    update,
+    deleteLineage
 }
