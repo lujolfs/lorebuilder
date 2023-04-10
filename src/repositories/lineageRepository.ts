@@ -24,8 +24,19 @@ async function findAll() {
     );
 }
 
+async function findById(id: string) {
+    return await configDatabase.query(
+        `
+        SELECT * FROM lineages
+        WHERE id = $1;
+        `,
+        [id]
+    );
+}
+
 export default {
     newLineage,
     lineageByName,
-    findAll
+    findAll,
+    findById
 }

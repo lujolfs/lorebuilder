@@ -18,7 +18,14 @@ async function findAll() {
     return rows;
 }
 
+async function findById(id: string) {
+    const { rows, rowCount } = await lineageRepository.findById(id);
+    if (!rowCount) throw errors.notFoundError();
+    return rows;
+}
+
 export default {
     create,
-    findAll
+    findAll,
+    findById
 }

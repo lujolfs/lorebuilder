@@ -16,4 +16,9 @@ lineageRoutes.get(
     lineagesControllers.findAll
 );
 
+lineageRoutes.get(
+    "/:id",
+    lineagesControllers.findById
+)
+
 export default lineageRoutes;

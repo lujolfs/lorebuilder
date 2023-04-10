@@ -23,7 +23,18 @@ async function findAll (req: Request, res: Response, next: NextFunction) {
     }
 }
 
+async function findById (req: Request, res: Response, next: NextFunction) {
+    let {id} = req.params;
+    try {
+        const lineage = await lineageServices.findById(id);
+        return res.send(lineage[0]);
+    } catch (err) {
+        next(err);
+    }
+}
+
 export default{
     create,
-    findAll
+    findAll,
+    findById
 }
