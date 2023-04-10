@@ -1,0 +1,26 @@
+{
+  "name": "lorebuilder",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Lorebuilding tool for TTRPG campaigns.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "http-status": "^1.6.2",
+    "joi": "^17.9.1",
+    "pg": "^8.10.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/pg": "^8.6.6",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
