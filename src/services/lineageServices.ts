@@ -15,11 +15,11 @@ async function findAll() {
     return data;
 }
 
-/* async function findById(id: string) {
-    const { rows, rowCount } = await lineageRepository.findById(id);
-    if (!rowCount) throw errors.notFoundError();
-    return rows;
-} */
+async function findById(id: number) {
+    const data = await lineageRepository.findById(id);
+    if (!data) throw errors.notFoundError();
+    return data;
+}
 
 /* async function update(updatedLineage: Lineage) {
     const {
@@ -40,7 +40,7 @@ async function findAll() {
 export default {
     create,
     findAll,
-    //findById,
+    findById,
     //update,
     //deleteLineage
 }

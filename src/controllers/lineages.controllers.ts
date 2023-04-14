@@ -23,15 +23,15 @@ async function findAll (req: Request, res: Response, next: NextFunction) {
     }
 }
 
-/* async function findById (req: Request, res: Response, next: NextFunction) {
-    const {id} = req.params;
+async function findById (req: Request, res: Response, next: NextFunction) {
+    const id = parseInt(req.params.id);
     try {
         const lineage = await lineageServices.findById(id);
-        return res.send(lineage[0]);
+        return res.send(lineage);
     } catch (err) {
         next(err);
     }
-} */
+}
 
 /* async function update (req: Request, res: Response, next: NextFunction) {
     const updatedLineage = req.body as Lineage;
@@ -59,7 +59,7 @@ async function findAll (req: Request, res: Response, next: NextFunction) {
 export default {
     create,
     findAll,
-    //findById,
+    findById,
     //update,
     //deleteLineage
 }

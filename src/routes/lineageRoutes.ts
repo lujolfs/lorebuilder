@@ -16,10 +16,10 @@ lineageRoutes.get(
     lineagesControllers.findAll
 );
 
-/* lineageRoutes.get(
+lineageRoutes.get(
     "/:id",
     lineagesControllers.findById
-) */
+)
 
 /* lineageRoutes.put(
     "/update",

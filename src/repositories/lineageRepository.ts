@@ -27,15 +27,14 @@ async function findAll() {
     return data;
 }
 
-/* async function findById(id: string) {
-    return await configDatabase.query(
-        `
-        SELECT * FROM lineages
-        WHERE id = $1;
-        `,
-        [id]
-    );
-} */
+async function findById(id: number) {
+    const data = await prisma.lineages.findUnique({
+        where: {
+            id
+        }
+    });
+    return data;
+}
 
 /* async function lineageUpdate (updatedLineage: Lineage) {
     return await configDatabase.query(
@@ -61,7 +60,7 @@ export default {
     newLineage,
     lineageByName,
     findAll,
-    //findById,
+    findById,
     //lineageUpdate,
     //deleteLineage
 }
