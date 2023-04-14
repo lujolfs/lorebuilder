@@ -22,7 +22,7 @@ lineageRoutes.get(
 )
 
 lineageRoutes.put(
-    "/update",
+    "/:id/update",
     validateSchema(lineageSchemaUpdate),
     lineagesControllers.update
 )

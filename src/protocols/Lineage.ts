@@ -1,8 +1,16 @@
 export type Lineage = {
-    id?: string,
+    id?: number,
     name: string,
     maxAge: number,
     adultAge: number,
     isPlayable: boolean,
     description: string
+}
+
+export type LineageInfo = {
+    name?: string,
+    maxAge?: number,
+    adultAge?: number,
+    isPlayable?: boolean,
+    description?: string
 }

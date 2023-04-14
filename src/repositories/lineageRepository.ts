@@ -1,57 +1,62 @@
-import configDatabase from "../config/db.js";
-import { Lineage } from "../protocols/Lineage.js";
+import prisma from "../config/db.js";
+import { LineageInfo } from "../protocols/Lineage.js";
 
-async function newLineage(lineage: Lineage) {
-    configDatabase.query(`
-        INSERT INTO lineages (name, "maxAge", "adultAge", "isPlayable", description) VALUES ($1, $2, $3, $4, $5);
-    `, [lineage.name, lineage.maxAge, lineage.adultAge, lineage.isPlayable, lineage.description])
+async function newLineage(name: string, maxAge: number, adultAge:number, isPlayable: boolean, description: string) {
+    await prisma.lineages.create({
+        data: {
+            name,
+            maxAge,
+            adultAge,
+            isPlayable,
+            description
+        }
+    })
 }
 
 async function lineageByName(name: string) {
-    return await configDatabase.query(
-        `
-            SELECT * FROM lineages WHERE name = $1;
-        `,
-        [name]
-    );
+    const data = await prisma.lineages.findFirst({
+        where: {
+            name,
+        }
+    })
+    return data;
 }
 
 async function findAll() {
-    return await configDatabase.query(
-        `
-            SELECT * FROM lineages;
-        `
-    );
+    const data = await prisma.lineages.findMany();
+    return data;
 }
 
-async function findById(id: string) {
-    return await configDatabase.query(
-        `
-        SELECT * FROM lineages
-        WHERE id = $1;
-        `,
-        [id]
-    );
+async function findById(id: number) {
+    const data = await prisma.lineages.findUnique({
+        where: {
+            id
+        }
+    });
+    return data;
 }
 
-async function lineageUpdate (updatedLineage: Lineage) {
-    return await configDatabase.query(
-        `
-            UPDATE lineages SET name=$1, "maxAge"=$2, "adultAge"=$3, "isPlayable"=$4, description=$5
-            WHERE id=$6;
-        `,
-        [updatedLineage.name, updatedLineage.maxAge, updatedLineage.adultAge, updatedLineage.isPlayable, updatedLineage.description, updatedLineage.id]
-    );
+async function lineageUpdate (id: number, updatedInfo: LineageInfo) {
+    return await prisma.lineages.update({
+        where: {
+            id
+        },
+        data: {
+            name: updatedInfo.name,
+            maxAge: updatedInfo.maxAge,
+            adultAge: updatedInfo.adultAge,
+            isPlayable: updatedInfo.isPlayable,
+            description: updatedInfo.description
+        }
+    })
 }
 
-async function deleteLineage (id: string) {
-    return await configDatabase.query(
-        `
-            DELETE FROM lineages
-            WHERE id=$1;
-        `,
-        [id]
-    );
+async function deleteLineage (id: number) {
+    return await prisma.lineages.delete({
+        where: {
+            id
+        }
+    })
 }
 
 export default {

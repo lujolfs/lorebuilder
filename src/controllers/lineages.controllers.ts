@@ -24,29 +24,29 @@ async function findAll (req: Request, res: Response, next: NextFunction) {
 }
 
 async function findById (req: Request, res: Response, next: NextFunction) {
-    const {id} = req.params;
+    const id = parseInt(req.params.id);
     try {
         const lineage = await lineageServices.findById(id);
-        return res.send(lineage[0]);
+        return res.send(lineage);
     } catch (err) {
         next(err);
     }
 }
 
 async function update (req: Request, res: Response, next: NextFunction) {
+    const id = parseInt(req.params.id);
     const updatedLineage = req.body as Lineage;
-    let id = updatedLineage.id
     try {
-        await lineageServices.update(updatedLineage);
+        await lineageServices.update(id, updatedLineage);
         const lineage = await lineageServices.findById(id);
-        return res.send(lineage[0]).status(200);
+        return res.send(lineage).status(200);
     } catch (err) {
         next (err)
     }
 }
 
 async function deleteLineage (req: Request, res: Response, next: NextFunction) {
-    const {id} = req.params;
+    const id = parseInt(req.params.id);
     try {
         await lineageServices.deleteLineage(id);
         const lineages = await lineageServices.findAll();

@@ -1,42 +1,36 @@
-import { Request, Response } from "express";
-import { Lineage } from "../protocols/Lineage.js";
+import { Lineage, LineageInfo } from "../protocols/Lineage.js";
 import lineageRepository from "../repositories/lineageRepository.js";
 import errors from "../errors/index.js";
 
 async function create (newLineage: Lineage) {
-    const {
-        rows: [lineage],
-    } = await lineageRepository.lineageByName(newLineage.name);
-    if (lineage) throw errors.conflictError("Lineage already exists");
+    const data = await lineageRepository.lineageByName(newLineage.name);
+    if (data) throw errors.conflictError("Lineage already exists");
 
-    await lineageRepository.newLineage(newLineage);
+    await lineageRepository.newLineage(newLineage.name, newLineage.maxAge, newLineage.adultAge, newLineage.isPlayable, newLineage.description);
 }
 
 async function findAll() {
-    const { rows, rowCount } = await lineageRepository.findAll();
-    if (!rowCount) throw errors.notFoundError();
-    return rows;
+    const data = await lineageRepository.findAll();
+    if (!data) throw errors.notFoundError();
+    return data;
 }
 
-async function findById(id: string) {
-    const { rows, rowCount } = await lineageRepository.findById(id);
-    if (!rowCount) throw errors.notFoundError();
-    return rows;
+async function findById(id: number) {
+    const data = await lineageRepository.findById(id);
+    if (!data) throw errors.notFoundError();
+    return data;
 }
 
-async function update(updatedLineage: Lineage) {
-    const {
-        rows: [lineage],
-    } = await lineageRepository.findById(updatedLineage.id);
-    if (!lineage) throw errors.notFoundError();
+async function update(id: number, updatedLineage: LineageInfo) {
+    const data = await lineageRepository.findById(id);
+    if (!data) throw errors.notFoundError();
 
-    await lineageRepository.lineageUpdate(updatedLineage);
+    await lineageRepository.lineageUpdate(id, updatedLineage);
 }
 
-async function deleteLineage(id: string) {
-    const { rowCount } = await lineageRepository.findById(id);
-    if (!rowCount) throw errors.notFoundError();
-
+async function deleteLineage(id: number) {
+    const data = await lineageRepository.findById(id);
+    if (!data) throw errors.notFoundError();
     await lineageRepository.deleteLineage(id);
 }
 
