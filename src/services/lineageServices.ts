@@ -28,17 +28,16 @@ async function update(id: number, updatedLineage: LineageInfo) {
     await lineageRepository.lineageUpdate(id, updatedLineage);
 }
 
-/* async function deleteLineage(id: string) {
-    const { rowCount } = await lineageRepository.findById(id);
-    if (!rowCount) throw errors.notFoundError();
-
+async function deleteLineage(id: number) {
+    const data = await lineageRepository.findById(id);
+    if (!data) throw errors.notFoundError();
     await lineageRepository.deleteLineage(id);
-} */
+}
 
 export default {
     create,
     findAll,
     findById,
     update,
-    //deleteLineage
+    deleteLineage
 }

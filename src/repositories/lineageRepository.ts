@@ -51,15 +51,13 @@ async function lineageUpdate (id: number, updatedInfo: LineageInfo) {
     })
 }
 
-/* async function deleteLineage (id: string) {
-    return await configDatabase.query(
-        `
-            DELETE FROM lineages
-            WHERE id=$1;
-        `,
-        [id]
-    );
-} */
+async function deleteLineage (id: number) {
+    return await prisma.lineages.delete({
+        where: {
+            id
+        }
+    })
+}
 
 export default {
     newLineage,
@@ -67,5 +65,5 @@ export default {
     findAll,
     findById,
     lineageUpdate,
-    //deleteLineage
+    deleteLineage
 }

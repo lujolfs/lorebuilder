@@ -45,8 +45,8 @@ async function update (req: Request, res: Response, next: NextFunction) {
     }
 }
 
-/* async function deleteLineage (req: Request, res: Response, next: NextFunction) {
-    const {id} = req.params;
+async function deleteLineage (req: Request, res: Response, next: NextFunction) {
+    const id = parseInt(req.params.id);
     try {
         await lineageServices.deleteLineage(id);
         const lineages = await lineageServices.findAll();
@@ -54,12 +54,12 @@ async function update (req: Request, res: Response, next: NextFunction) {
     } catch (err) {
         next (err)
     }
-} */
+}
 
 export default {
     create,
     findAll,
     findById,
     update,
-    //deleteLineage
+    deleteLineage
 }

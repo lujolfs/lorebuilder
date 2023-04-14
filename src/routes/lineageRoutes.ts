@@ -27,9 +27,9 @@ lineageRoutes.put(
     lineagesControllers.update
 )
 
-/* lineageRoutes.delete(
+lineageRoutes.delete(
     "/:id",
     lineagesControllers.deleteLineage
-) */
+)
 
 export default lineageRoutes;
