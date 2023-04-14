@@ -2,14 +2,12 @@ import { Lineage } from "../protocols/Lineage.js";
 import lineageRepository from "../repositories/lineageRepository.js";
 import errors from "../errors/index.js";
 
-/* async function create (newLineage: Lineage) {
-    const {
-        rows: [lineage],
-    } = await lineageRepository.lineageByName(newLineage.name);
-    if (lineage) throw errors.conflictError("Lineage already exists");
+async function create (newLineage: Lineage) {
+    const data = await lineageRepository.lineageByName(newLineage.name);
+    if (data) throw errors.conflictError("Lineage already exists");
 
-    await lineageRepository.newLineage(newLineage);
-} */
+    await lineageRepository.newLineage(newLineage.name, newLineage.maxAge, newLineage.adultAge, newLineage.isPlayable, newLineage.description);
+}
 
 async function findAll() {
     const data = await lineageRepository.findAll();
@@ -40,7 +38,7 @@ async function findAll() {
 } */
 
 export default {
-    //create,
+    create,
     findAll,
     //findById,
     //update,

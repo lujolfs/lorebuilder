@@ -1,20 +1,26 @@
 import prisma from "../config/db.js";
 import { Lineage } from "../protocols/Lineage.js";
 
-/* async function newLineage(lineage: Lineage) {
-    configDatabase.query(`
-        INSERT INTO lineages (name, "maxAge", "adultAge", "isPlayable", description) VALUES ($1, $2, $3, $4, $5);
-    `, [lineage.name, lineage.maxAge, lineage.adultAge, lineage.isPlayable, lineage.description])
-} */
+async function newLineage(name: string, maxAge: number, adultAge:number, isPlayable: boolean, description: string) {
+    await prisma.lineages.create({
+        data: {
+            name,
+            maxAge,
+            adultAge,
+            isPlayable,
+            description
+        }
+    })
+}
 
-/* async function lineageByName(name: string) {
-    return await configDatabase.query(
-        `
-            SELECT * FROM lineages WHERE name = $1;
-        `,
-        [name]
-    );
-} */
+async function lineageByName(name: string) {
+    const data = await prisma.lineages.findFirst({
+        where: {
+            name,
+        }
+    })
+    return data;
+}
 
 async function findAll() {
     const data = await prisma.lineages.findMany();
@@ -52,8 +58,8 @@ async function findAll() {
 } */
 
 export default {
-    //newLineage,
-    //lineageByName,
+    newLineage,
+    lineageByName,
     findAll,
     //findById,
     //lineageUpdate,

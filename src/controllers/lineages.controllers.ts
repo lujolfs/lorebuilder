@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { Lineage } from "../protocols/Lineage.js";
 import lineageServices from "../services/lineageServices.js"
 
-/* async function create(req: Request, res: Response, next: NextFunction) {
+async function create(req: Request, res: Response, next: NextFunction) {
     const newLineage = req.body as Lineage;
 
     try {
@@ -11,7 +11,7 @@ import lineageServices from "../services/lineageServices.js"
     } catch (err) {
         next(err)
     }
-} */
+}
 
 async function findAll (req: Request, res: Response, next: NextFunction) {
     try {
@@ -57,7 +57,7 @@ async function findAll (req: Request, res: Response, next: NextFunction) {
 } */
 
 export default {
-    //create,
+    create,
     findAll,
     //findById,
     //update,

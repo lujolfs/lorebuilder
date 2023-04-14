@@ -5,11 +5,11 @@ import { lineageSchema, lineageSchemaUpdate } from "../schemas/Lineage.js";
 
 const lineageRoutes = Router();
 
-/* lineageRoutes.post(
+lineageRoutes.post(
     "/create",
     validateSchema(lineageSchema),
     lineagesControllers.create
-); */
+);
 
 lineageRoutes.get(
     "/",
