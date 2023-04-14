@@ -5,31 +5,31 @@ import { lineageSchema, lineageSchemaUpdate } from "../schemas/Lineage.js";
 
 const lineageRoutes = Router();
 
-lineageRoutes.post(
+/* lineageRoutes.post(
     "/create",
     validateSchema(lineageSchema),
     lineagesControllers.create
-);
+); */
 
 lineageRoutes.get(
     "/",
     lineagesControllers.findAll
 );
 
-lineageRoutes.get(
+/* lineageRoutes.get(
     "/:id",
     lineagesControllers.findById
-)
+) */
 
-lineageRoutes.put(
+/* lineageRoutes.put(
     "/update",
     validateSchema(lineageSchemaUpdate),
     lineagesControllers.update
-)
+) */
 
-lineageRoutes.delete(
+/* lineageRoutes.delete(
     "/:id",
     lineagesControllers.deleteLineage
-)
+) */
 
 export default lineageRoutes;

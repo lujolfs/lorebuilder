@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { Lineage } from "../protocols/Lineage.js";
 import lineageServices from "../services/lineageServices.js"
 
-async function create(req: Request, res: Response, next: NextFunction) {
+/* async function create(req: Request, res: Response, next: NextFunction) {
     const newLineage = req.body as Lineage;
 
     try {
@@ -11,7 +11,7 @@ async function create(req: Request, res: Response, next: NextFunction) {
     } catch (err) {
         next(err)
     }
-}
+} */
 
 async function findAll (req: Request, res: Response, next: NextFunction) {
     try {
@@ -23,7 +23,7 @@ async function findAll (req: Request, res: Response, next: NextFunction) {
     }
 }
 
-async function findById (req: Request, res: Response, next: NextFunction) {
+/* async function findById (req: Request, res: Response, next: NextFunction) {
     const {id} = req.params;
     try {
         const lineage = await lineageServices.findById(id);
@@ -31,9 +31,9 @@ async function findById (req: Request, res: Response, next: NextFunction) {
     } catch (err) {
         next(err);
     }
-}
+} */
 
-async function update (req: Request, res: Response, next: NextFunction) {
+/* async function update (req: Request, res: Response, next: NextFunction) {
     const updatedLineage = req.body as Lineage;
     let id = updatedLineage.id
     try {
@@ -43,9 +43,9 @@ async function update (req: Request, res: Response, next: NextFunction) {
     } catch (err) {
         next (err)
     }
-}
+} */
 
-async function deleteLineage (req: Request, res: Response, next: NextFunction) {
+/* async function deleteLineage (req: Request, res: Response, next: NextFunction) {
     const {id} = req.params;
     try {
         await lineageServices.deleteLineage(id);
@@ -54,12 +54,12 @@ async function deleteLineage (req: Request, res: Response, next: NextFunction) {
     } catch (err) {
         next (err)
     }
-}
+} */
 
 export default {
-    create,
+    //create,
     findAll,
-    findById,
-    update,
-    deleteLineage
+    //findById,
+    //update,
+    //deleteLineage
 }
