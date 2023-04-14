@@ -1,5 +1,5 @@
 import prisma from "../config/db.js";
-import { Lineage } from "../protocols/Lineage.js";
+import { LineageInfo } from "../protocols/Lineage.js";
 
 async function newLineage(name: string, maxAge: number, adultAge:number, isPlayable: boolean, description: string) {
     await prisma.lineages.create({
@@ -36,15 +36,20 @@ async function findById(id: number) {
     return data;
 }
 
-/* async function lineageUpdate (updatedLineage: Lineage) {
-    return await configDatabase.query(
-        `
-            UPDATE lineages SET name=$1, "maxAge"=$2, "adultAge"=$3, "isPlayable"=$4, description=$5
-            WHERE id=$6;
-        `,
-        [updatedLineage.name, updatedLineage.maxAge, updatedLineage.adultAge, updatedLineage.isPlayable, updatedLineage.description, updatedLineage.id]
-    );
-} */
+async function lineageUpdate (id: number, updatedInfo: LineageInfo) {
+    return await prisma.lineages.update({
+        where: {
+            id
+        },
+        data: {
+            name: updatedInfo.name,
+            maxAge: updatedInfo.maxAge,
+            adultAge: updatedInfo.adultAge,
+            isPlayable: updatedInfo.isPlayable,
+            description: updatedInfo.description
+        }
+    })
+}
 
 /* async function deleteLineage (id: string) {
     return await configDatabase.query(
@@ -61,6 +66,6 @@ export default {
     lineageByName,
     findAll,
     findById,
-    //lineageUpdate,
+    lineageUpdate,
     //deleteLineage
 }

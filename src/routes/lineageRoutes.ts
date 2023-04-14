@@ -21,11 +21,11 @@ lineageRoutes.get(
     lineagesControllers.findById
 )
 
-/* lineageRoutes.put(
-    "/update",
+lineageRoutes.put(
+    "/:id/update",
     validateSchema(lineageSchemaUpdate),
     lineagesControllers.update
-) */
+)
 
 /* lineageRoutes.delete(
     "/:id",

@@ -1,4 +1,4 @@
-import { Lineage } from "../protocols/Lineage.js";
+import { Lineage, LineageInfo } from "../protocols/Lineage.js";
 import lineageRepository from "../repositories/lineageRepository.js";
 import errors from "../errors/index.js";
 
@@ -21,14 +21,12 @@ async function findById(id: number) {
     return data;
 }
 
-/* async function update(updatedLineage: Lineage) {
-    const {
-        rows: [lineage],
-    } = await lineageRepository.findById(updatedLineage.id);
-    if (!lineage) throw errors.notFoundError();
+async function update(id: number, updatedLineage: LineageInfo) {
+    const data = await lineageRepository.findById(id);
+    if (!data) throw errors.notFoundError();
 
-    await lineageRepository.lineageUpdate(updatedLineage);
-} */
+    await lineageRepository.lineageUpdate(id, updatedLineage);
+}
 
 /* async function deleteLineage(id: string) {
     const { rowCount } = await lineageRepository.findById(id);
@@ -41,6 +39,6 @@ export default {
     create,
     findAll,
     findById,
-    //update,
+    update,
     //deleteLineage
 }
