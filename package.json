@@ -5,7 +5,11 @@
   "description": "Lorebuilding tool for TTRPG campaigns.",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/app.ts"
+    "dev": "nodemon src/app.ts",
+    "prisma:seed": "npx prisma db seed"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "",

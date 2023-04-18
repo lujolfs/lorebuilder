@@ -7,11 +7,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model lineages {
-  id          Int      @id @default(autoincrement())
-  name        String   @db.VarChar
+model Lineages {
+  id          Int          @id @default(autoincrement())
+  name        String       @db.VarChar @unique
   maxAge      Int
   adultAge    Int
-  isPlayable  Boolean? @default(false)
+  isPlayable  Boolean?     @default(false)
   description String?
+  character   Characters[]
+
+  @@map("lineages")
+}
+
+model Organizations {
+  id          Int          @id @default(autoincrement())
+  name        String       @db.VarChar @unique
+  mainBase    String
+  members     Int
+  alignmentId Int
+  description String?
+  character   Characters[]
+  alignment   Alignments    @relation(fields: [alignmentId], references: [id])
+
+  @@map("organizations")
+}
+
+model Characters {
+  id             Int           @id @default(autoincrement())
+  name           String        @db.VarChar @unique
+  lineageId      Int
+  organizationId Int
+  lineage        Lineages      @relation(fields: [lineageId], references: [id])
+  organization   Organizations @relation(fields: [organizationId], references: [id])
+
+  @@map("characters")
+}
+
+model Alignments {
+  id           Int             @id @default(autoincrement())
+  name         String          @db.VarChar
+  organization Organizations[]
+
+  @@map("alignments")
 }
